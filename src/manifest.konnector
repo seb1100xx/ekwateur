@@ -1,0 +1,24 @@
+{
+    "name": "ekWateur",
+    "type": "node",
+    "slug": "ekwateur",
+    "description": "Fournisseur d'électricité et de gaz moins chers, renouvelables et collaboratifs.",
+    "source": "git://github.com/cozy/cozy-konnector-thename.git",
+    "vendor_link": "https://ekwateur.fr",
+    "categories": ["energy"],
+    "permissions": {
+        "bank operations": {
+          "type": "io.cozy.bank.operations"
+        },
+        "bills": {
+          "type": "io.cozy.bills"
+        },
+        "files": {
+          "type": "io.cozy.files"
+        },
+        "accounts": {
+          "type": "io.cozy.accounts",
+          "verbs": ["GET"]
+        }
+    }
+  }
