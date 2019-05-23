@@ -85,6 +85,6 @@
       }
     }
   },
-  "banksTransactionRegExp": "\\bbooks\\b",
+  "banksTransactionRegExp": "\\bekwateur\\b",
   "manifest_version": "2"
 }
