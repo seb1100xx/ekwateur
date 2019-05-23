@@ -36,7 +36,7 @@ async function start(fields) {
 
   const docs = parseDocuments($)
   await saveBills(docs, fields, {
-    identifiers: ['']
+    identifiers: ['ekwateur']
   })
   await downloadProofOfResidence($)
 }
