@@ -3,7 +3,8 @@ const {
   scrape,
   saveBills,
   log,
-  saveFiles
+  saveFiles,
+  errors
 } = require('cozy-konnector-libs')
 
 module.exports = new BaseKonnector(start)
@@ -30,11 +31,11 @@ async function start(fields) {
   const $ = cheerio.load(html)
 
   const docs = parseDocuments($)
-
-  downloadProofOfResidence($)
   await saveBills(docs, fields, {
     identifiers: ['']
   })
+  await downloadProofOfResidence($)
+
 }
 
 // Get the sample page and parse the cookie
@@ -50,39 +51,30 @@ async function authenticate(username, password) {
     _mode: 'cXI4cE93PT0' // Why ? I don't know
   }
 
-  return rp(options)
-    .then(async function(html) {
-      // Get the csrf token
-      let $ = cheerio.load(html)
-      let csrf_token = $('input[name=_csrf_token]').attr('value')
+  const html = await rp(options)
+  // Get the csrf token
+  let $ = cheerio.load(html)
+  let csrf_token = $('input[name=_csrf_token]').attr('value')
+  loginFormData['_csrf_token'] = csrf_token
 
-      loginFormData['_csrf_token'] = csrf_token
-
-      const optionsLogin = {
-        method: 'POST',
-        uri: postLoginURL,
-        jar: cookiejar,
-        form: loginFormData,
-        followAllRedirects: true
-      }
-
-      // Change the options, but keep the cookiejar
-      await rp(optionsLogin)
-        .then(function(htmlString) {
-          let $ = cheerio.load(htmlString)
-          if ($('.menu__user').length === 0) {
-            throw new Error('LOGIN_FAILED')
-          }
-        })
-        .catch(function(err) {
-          log('error', err.message)
-          throw new Error('UNKNOWN_ERROR')
-        })
-    })
-    .catch(function(err) {
-      log('error', err.message)
-      log('error', 'Failed')
-    })
+  const optionsLogin = {
+    method: 'POST',
+    uri: postLoginURL,
+    jar: cookiejar,
+    form: loginFormData,
+    followAllRedirects: true
+  }
+  // Change the options, but keep the cookiejar
+  try {
+    await rp(optionsLogin)
+  }  catch (e) {
+    if (e.statusCode === 500) {
+      log('error', 'Error 500 on login, sign of bad credentials')
+      throw new Error(errors.LOGIN_FAILED)
+    } else {
+      throw e
+    }
+  }
 }
 
 async function getDocuments() {
@@ -173,7 +165,7 @@ function parseDocuments($) {
   return returnedItems.map(doc => ({
     ...doc,
     currency: '€',
-    vendor: 'ekWateur',
+    vendor: 'ekwateur',
     requestOptions: {
       method: 'GET',
       jar: cookiejar
