@@ -1,3 +1,7 @@
+process.env.SENTRY_DSN =
+  process.env.SENTRY_DSN ||
+  'https://b731d70cb7e14793b9388cd33bbad5c7@sentry.cozycloud.cc/126'
+
 const {
   BaseKonnector,
   scrape,
