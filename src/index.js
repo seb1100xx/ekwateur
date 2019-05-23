@@ -35,7 +35,6 @@ async function start(fields) {
     identifiers: ['']
   })
   await downloadProofOfResidence($)
-
 }
 
 // Get the sample page and parse the cookie
@@ -67,7 +66,7 @@ async function authenticate(username, password) {
   // Change the options, but keep the cookiejar
   try {
     await rp(optionsLogin)
-  }  catch (e) {
+  } catch (e) {
     if (e.statusCode === 500) {
       log('error', 'Error 500 on login, sign of bad credentials')
       throw new Error(errors.LOGIN_FAILED)
