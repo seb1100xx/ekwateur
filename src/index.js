@@ -150,14 +150,17 @@ function parseDocuments($) {
   returnedItems = returnedItems.filter(val => val.fileurl !== '')
 
   returnedItems.forEach(function(item) {
-    item.id = item.fileurl.split('/').pop()
+    // type attribut not relevant as a bill type, but can be set as subtype for futur use
+    item.subtype = item.type
+    delete item.type
+    item.vendorRef = item.fileurl.split('/').pop()
     item.date = moment(item.date, 'DD/MM/YYYY').toDate()
     item.filename =
       [
         moment().format('YYYY-MM-DD', item.date),
         'ekWateur',
         item.amount + '€',
-        item.id
+        item.subtype
       ].join('_') + '.pdf'
   })
 
