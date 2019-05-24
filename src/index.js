@@ -38,7 +38,7 @@ async function start(fields) {
   await saveBills(docs, fields, {
     identifiers: ['ekwateur']
   })
-  await downloadProofOfResidence($)
+  await downloadProofOfResidence(fields)
 }
 
 // Get the sample page and parse the cookie
@@ -113,9 +113,10 @@ function cleanURL(url) {
   return baseURL + url.trim()
 }
 
-async function downloadProofOfResidence() {
+async function downloadProofOfResidence(fields) {
   const files = [
     {
+      shouldReplaceFile: true,
       filename: 'Justificatif de domicile.pdf',
       fileurl: baseURL + '/client/justificatif_de_domicile',
       requestOptions: {
@@ -124,7 +125,7 @@ async function downloadProofOfResidence() {
       }
     }
   ]
-  return saveFiles(files, '/')
+  return saveFiles(files, fields)
 }
 
 function parseDocuments($) {
