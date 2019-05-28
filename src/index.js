@@ -162,7 +162,7 @@ function parseDocuments($) {
     item.date = moment(item.date, 'DD/MM/YYYY').toDate()
     item.filename =
       [
-        moment().format('YYYY-MM-DD', item.date),
+        moment(item.date).format('YYYY-MM-DD'),
         'ekWateur',
         item.amount + '€',
         item.subtype
