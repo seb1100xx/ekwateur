@@ -117,7 +117,7 @@ async function downloadProofOfResidence(fields) {
   const files = [
     {
       shouldReplaceFile: true,
-      filename: 'Justificatif de domicile.pdf',
+      filename: 'attestation de contrat (justificatif de domicile).pdf',
       fileurl: baseURL + '/client/justificatif_de_domicile',
       requestOptions: {
         method: 'GET',
