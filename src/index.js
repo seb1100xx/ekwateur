@@ -38,7 +38,7 @@ async function start(fields) {
   await saveBills(docs, fields, {
     identifiers: ['ekwateur']
   })
-  await downloadProofOfResidence($)
+  await downloadProofOfResidence(fields)
 }
 
 // Get the sample page and parse the cookie
@@ -113,10 +113,11 @@ function cleanURL(url) {
   return baseURL + url.trim()
 }
 
-async function downloadProofOfResidence() {
+async function downloadProofOfResidence(fields) {
   const files = [
     {
-      filename: 'Justificatif de domicile.pdf',
+      shouldReplaceFile: true,
+      filename: 'attestation de contrat (justificatif de domicile).pdf',
       fileurl: baseURL + '/client/justificatif_de_domicile',
       requestOptions: {
         method: 'GET',
@@ -124,7 +125,7 @@ async function downloadProofOfResidence() {
       }
     }
   ]
-  return saveFiles(files, '/')
+  return saveFiles(files, fields)
 }
 
 function parseDocuments($) {
@@ -161,7 +162,7 @@ function parseDocuments($) {
     item.date = moment(item.date, 'DD/MM/YYYY').toDate()
     item.filename =
       [
-        moment().format('YYYY-MM-DD', item.date),
+        moment(item.date).format('YYYY-MM-DD'),
         'ekWateur',
         item.amount + '€',
         item.subtype

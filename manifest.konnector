@@ -57,7 +57,7 @@
   "locales": {
     "fr": {
       "short_description": "Récupère vos factures",
-      "long_description": "Récupère vos factures d'énergie ekWateur et votre justificatif de domicile",
+      "long_description": "Récupère sur le site ekWateur :\n- Toutes vos factures\n- Votre attestation de contrat toujours à jour (qui vaut pour attestation de domicile)",
       "permissions": {
         "bank operations": {
           "description": "Utilisé pour relier les factures à des operations bancaires"
@@ -75,7 +75,7 @@
     },
     "en": {
       "short_description": "Fetch your bills",
-      "long_description": "Fetch your ekWateur energy bills and your proof of address document",
+      "long_description": "Fetch on the ekWateur website:\n- All your bills\n- Your contract certificate always up-to-date (valid for proof of residence)",
       "permissions": {
         "bank operations": {
           "description": "Required to link bank operations to bills"
