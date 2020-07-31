@@ -1,11 +1,9 @@
 language: node_js
 node_js:
-- '8'
+- '12'
 env:
   global:
-  - GH_USER_EMAIL="travis@example.org"
-  - GH_USER_NAME="cozy-bot"
-  - DEPLOY_REPOSITORY="git@github.com:konnectors/ekwateur.git"
+  # REGISTRY_TOKEN(editor=cozy, app=ekwateur)
   - secure: ZBwzz73bMDcyw94BkCeU8huvIde2kMtf/JY7BzlvCxCxLncJHG8CuA1x0zmBEG7EqovUyoDSI9BzLug7rl3V3pyFGcvUiaceUAn35afgWgmc9UCFA4XBKH9H976YpuvbzjFmK8RbgZKyHElWr80v54eFA05cDy0ksHropnHbQrgiQDppYyKonANaCdvYnTpQu+ZLm6U1n/DRB+vkzNEfdNIFmgp7wrrKRkdNA9kHzMdmftySM2OET6ZL2dJmYJsIGXfKZiTGe6yUgE1jBn5RRjLSbWUAOJ3mJvR7ix+Mpu9DpFiBJo1VQ0RCRgokf7Wd5eTSo6ivGt4kELUYxHP13VgZm6kMIbROdoxMzAiOC70XPSfODQJybYjphHn7DqoSobCn3cwtmxqiTAUshejgFOC2X3PUMHz/Hs/K61wZX77iGL9WjWcl7T1eL+etjQh/3vmMb76fRqgZrMZe8vNrAwuVpT2edDszvMa8K87qEYWTl1cb0PlE/s9/VWK0a8xHNfQYiNtObIKg/JevukujYwrACpgxpoUdj3zoKIl/EQlkB+2gv2es26vgXHkx6PJOMm23Hburg4nbq40OvnVYgq2Jg+ZcCfRQpZICYP6dDSJ7Xoy3cF2wrqRz8QFeXbW4+F0n7WWbTzME6AHMbYW8uepSQxhginUida2gJCn9rJU=
 cache:
   yarn: true
@@ -18,7 +16,6 @@ branches:
 script:
 - yarn lint
 - yarn build
-- yarn run check
 deploy:
 - provider: script
   skip-cleanup: true
