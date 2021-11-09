@@ -8,10 +8,15 @@ const {
   saveBills,
   log,
   saveFiles,
+  cozyClient,
   errors
 } = require('cozy-konnector-libs')
 
 module.exports = new BaseKonnector(start)
+
+// Importing models to get qualification by label
+const models = cozyClient.new.models
+const { Qualification } = models.document
 
 const cheerio = require('cheerio')
 var rp = require('request-promise')
@@ -177,9 +182,12 @@ function parseDocuments($) {
       method: 'GET',
       jar: cookiejar
     },
-    metadata: {
-      importDate: new Date(),
-      version: 1
+    fileAttributes: {
+      metadata: {
+        contentAuthor: 'ekwateur',
+        isSubscription: true,
+        qualification: Qualification.getByLabel('energy_invoice')
+      }
     }
   }))
 }

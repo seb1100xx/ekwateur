@@ -93,5 +93,11 @@
     }
   },
   "banksTransactionRegExp": "\\bekwateur\\b",
+  "features": [
+    "LOGIN_OK",
+    "BILLS",
+    "FILES",
+    "DOC_QUALIFICATION_V2"
+  ],
   "manifest_version": "2"
 }
