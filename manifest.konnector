@@ -97,7 +97,8 @@
     "LOGIN_OK",
     "BILLS",
     "FILES",
-    "DOC_QUALIFICATION_V2"
+    "DOC_QUALIFICATION_V2",
+    "CARBON_COPY"
   ],
   "manifest_version": "2"
 }

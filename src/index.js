@@ -9,6 +9,7 @@ const {
   log,
   saveFiles,
   cozyClient,
+  utils,
   errors
 } = require('cozy-konnector-libs')
 
@@ -184,8 +185,13 @@ function parseDocuments($) {
     },
     fileAttributes: {
       metadata: {
-        contentAuthor: 'ekwateur',
+        contentAuthor: 'https://ekwateur.fr/',
+        issueDate: utils.formatDate(doc.date),
+        datetime: utils.formatDate(doc.date),
+        datetimeLabel: `issueDate`,
+        invoiceNumber: `${doc.vendorRef}`,
         isSubscription: true,
+        carbonCopy: true,
         qualification: Qualification.getByLabel('energy_invoice')
       }
     }
