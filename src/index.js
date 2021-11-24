@@ -128,6 +128,13 @@ async function downloadProofOfResidence(fields) {
       requestOptions: {
         method: 'GET',
         jar: cookiejar
+      },
+      fileAttributes: {
+        metadata: {
+          contentAuthor: 'ekwateur.fr',
+          isSubscription: true,
+          carbonCopy: true,
+        }
       }
     }
   ]
@@ -185,7 +192,7 @@ function parseDocuments($) {
     },
     fileAttributes: {
       metadata: {
-        contentAuthor: 'https://ekwateur.fr/',
+        contentAuthor: 'ekwateur.fr',
         issueDate: utils.formatDate(doc.date),
         datetime: utils.formatDate(doc.date),
         datetimeLabel: `issueDate`,
