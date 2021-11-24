@@ -99,9 +99,13 @@
     "FILES",
     "DOC_QUALIFICATION_V2",
     "CARBON_COPY",
+<<<<<<< HEAD
     "SENTRY_V2",
     "VENDOR_REF",
     "METADATA_DEDUP"
+=======
+    "SENTRY_V2"
+>>>>>>> 80ba7cc683a876b2f76c009c35470741f855a64a
   ],
   "manifest_version": "2"
 }
