@@ -97,7 +97,11 @@
     "LOGIN_OK",
     "BILLS",
     "FILES",
-    "DOC_QUALIFICATION_V2"
+    "DOC_QUALIFICATION_V2",
+    "CARBON_COPY",
+    "SENTRY_V2",
+    "VENDOR_REF",
+    "METADATA_DEDUP"
   ],
   "manifest_version": "2"
 }
