@@ -1,0 +1,38 @@
+language: node_js
+node_js:
+- '12'
+env:
+  global:
+  # REGISTRY_TOKEN(editor=cozy, app=ekwateur)
+  - secure: ZBwzz73bMDcyw94BkCeU8huvIde2kMtf/JY7BzlvCxCxLncJHG8CuA1x0zmBEG7EqovUyoDSI9BzLug7rl3V3pyFGcvUiaceUAn35afgWgmc9UCFA4XBKH9H976YpuvbzjFmK8RbgZKyHElWr80v54eFA05cDy0ksHropnHbQrgiQDppYyKonANaCdvYnTpQu+ZLm6U1n/DRB+vkzNEfdNIFmgp7wrrKRkdNA9kHzMdmftySM2OET6ZL2dJmYJsIGXfKZiTGe6yUgE1jBn5RRjLSbWUAOJ3mJvR7ix+Mpu9DpFiBJo1VQ0RCRgokf7Wd5eTSo6ivGt4kELUYxHP13VgZm6kMIbROdoxMzAiOC70XPSfODQJybYjphHn7DqoSobCn3cwtmxqiTAUshejgFOC2X3PUMHz/Hs/K61wZX77iGL9WjWcl7T1eL+etjQh/3vmMb76fRqgZrMZe8vNrAwuVpT2edDszvMa8K87qEYWTl1cb0PlE/s9/VWK0a8xHNfQYiNtObIKg/JevukujYwrACpgxpoUdj3zoKIl/EQlkB+2gv2es26vgXHkx6PJOMm23Hburg4nbq40OvnVYgq2Jg+ZcCfRQpZICYP6dDSJ7Xoy3cF2wrqRz8QFeXbW4+F0n7WWbTzME6AHMbYW8uepSQxhginUida2gJCn9rJU=
+cache:
+  yarn: true
+  directories:
+  - node_modules
+branches:
+  except:
+  - build
+  - build-debug
+script:
+- yarn lint
+- yarn build
+deploy:
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    branch: master
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    tags: true
+before_install:
+- openssl aes-256-cbc -K $encrypted_0467aa454d92_key -iv $encrypted_0467aa454d92_iv
+  -in github_deploy_key.enc -out /tmp/github_deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/github_deploy_key
+- ssh-add /tmp/github_deploy_key
+after_deploy:
+- rm /tmp/github_deploy_key
+- ssh-add -D

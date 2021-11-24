@@ -1,0 +1,107 @@
+{
+  "version": "1.2.0",
+  "name": "ekWateur",
+  "type": "konnector",
+  "language": "node",
+  "icon": "icon.png",
+  "slug": "ekwateur",
+  "source": "git@github.com:konnectors/ekwateur.git",
+  "editor": "Cozy",
+  "vendor_link": "https://ekwateur.fr",
+  "categories": [
+    "energy"
+  ],
+  "fields": {
+    "login": {
+      "type": "text"
+    },
+    "password": {
+      "type": "password"
+    },
+    "advancedFields": {
+      "folderPath": {
+        "advanced": true,
+        "isRequired": false
+      }
+    }
+  },
+  "data_types": [
+    "bill"
+  ],
+  "screenshots": [],
+  "permissions": {
+    "bank operations": {
+      "type": "io.cozy.bank.operations"
+    },
+    "bills": {
+      "type": "io.cozy.bills"
+    },
+    "files": {
+      "type": "io.cozy.files"
+    },
+    "accounts": {
+      "type": "io.cozy.accounts",
+      "verbs": [
+        "GET"
+      ]
+    }
+  },
+  "developer": {
+    "name": "Cozy Cloud",
+    "url": "https://cozy.io"
+  },
+  "langs": [
+    "fr",
+    "en"
+  ],
+  "locales": {
+    "fr": {
+      "short_description": "Récupère vos factures",
+      "long_description": "Récupère sur le site ekWateur :\n- Toutes vos factures\n- Votre attestation de contrat toujours à jour (qui vaut pour attestation de domicile)",
+      "permissions": {
+        "bank operations": {
+          "description": "Utilisé pour relier les factures à des operations bancaires"
+        },
+        "bills": {
+          "description": "Utilisé pour sauver les données des factures"
+        },
+        "files": {
+          "description": "Utilisé pour sauvegarder les factures"
+        },
+        "accounts": {
+          "description": "Utilisé pour obtenir les données du compte"
+        }
+      }
+    },
+    "en": {
+      "short_description": "Fetch your bills",
+      "long_description": "Fetch on the ekWateur website:\n- All your bills\n- Your contract certificate always up-to-date (valid for proof of residence)",
+      "permissions": {
+        "bank operations": {
+          "description": "Required to link bank operations to bills"
+        },
+        "bills": {
+          "description": "Required to save the bills data"
+        },
+        "files": {
+          "description": "Required to save the bills"
+        },
+        "accounts": {
+          "description": "Required to get the account's data"
+        }
+      }
+    }
+  },
+  "banksTransactionRegExp": "\\bekwateur\\b",
+  "features": [
+    "LOGIN_OK",
+    "BILLS",
+    "FILES",
+    "DOC_QUALIFICATION_V2",
+    "CARBON_COPY",
+    "SENTRY_V2",
+    "VENDOR_REF",
+    "METADATA_DEDUP"
+  ],
+  "manifest_version": "2"
+}
