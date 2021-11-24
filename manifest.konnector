@@ -103,5 +103,8 @@
     "VENDOR_REF",
     "METADATA_DEDUP"
   ],
+  qualification_labels: [
+    "energy_invoice"
+  ],
   "manifest_version": "2"
 }
