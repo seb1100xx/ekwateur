@@ -2,7 +2,6 @@ process.env.SENTRY_DSN =
   process.env.SENTRY_DSN ||
   'https://6cc8166d546d4ae59d29c43dd058b33c@errors.cozycloud.cc/12'
 
-
 const {
   BaseKonnector,
   scrape,
@@ -43,7 +42,8 @@ async function start(fields) {
 
   const docs = parseDocuments($)
   await saveBills(docs, fields, {
-    identifiers: ['ekwateur']
+    identifiers: ['ekwateur'],
+    fileIdAttributes: ['vendorRef']
   })
   await downloadProofOfResidence(fields)
 }
@@ -134,7 +134,7 @@ async function downloadProofOfResidence(fields) {
         metadata: {
           contentAuthor: 'ekwateur.fr',
           isSubscription: true,
-          carbonCopy: true,
+          carbonCopy: true
         }
       }
     }
