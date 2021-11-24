@@ -98,7 +98,8 @@
     "BILLS",
     "FILES",
     "DOC_QUALIFICATION_V2",
-    "CARBON_COPY"
+    "CARBON_COPY",
+    "SENTRY_V2"
   ],
   "manifest_version": "2"
 }
