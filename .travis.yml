@@ -5,6 +5,9 @@ env:
   global:
   # REGISTRY_TOKEN(editor=cozy, app=ekwateur)
   - secure: ZBwzz73bMDcyw94BkCeU8huvIde2kMtf/JY7BzlvCxCxLncJHG8CuA1x0zmBEG7EqovUyoDSI9BzLug7rl3V3pyFGcvUiaceUAn35afgWgmc9UCFA4XBKH9H976YpuvbzjFmK8RbgZKyHElWr80v54eFA05cDy0ksHropnHbQrgiQDppYyKonANaCdvYnTpQu+ZLm6U1n/DRB+vkzNEfdNIFmgp7wrrKRkdNA9kHzMdmftySM2OET6ZL2dJmYJsIGXfKZiTGe6yUgE1jBn5RRjLSbWUAOJ3mJvR7ix+Mpu9DpFiBJo1VQ0RCRgokf7Wd5eTSo6ivGt4kELUYxHP13VgZm6kMIbROdoxMzAiOC70XPSfODQJybYjphHn7DqoSobCn3cwtmxqiTAUshejgFOC2X3PUMHz/Hs/K61wZX77iGL9WjWcl7T1eL+etjQh/3vmMb76fRqgZrMZe8vNrAwuVpT2edDszvMa8K87qEYWTl1cb0PlE/s9/VWK0a8xHNfQYiNtObIKg/JevukujYwrACpgxpoUdj3zoKIl/EQlkB+2gv2es26vgXHkx6PJOMm23Hburg4nbq40OvnVYgq2Jg+ZcCfRQpZICYP6dDSJ7Xoy3cF2wrqRz8QFeXbW4+F0n7WWbTzME6AHMbYW8uepSQxhginUida2gJCn9rJU=
+  - MATTERMOST_CHANNEL=publication
+  # MATTERMOST_HOOK_URL
+  - secure: YGjRqxgXGQgOhLNrtmaG1iFjgkUCvNuJNfqV1t4nJ7I60Nj7szc0ZuTdHbZsWEHz8GBsw8PcOf+4qtl7gvlbwp6HZIbBQoxjA/Kyk12RFVtgPb6Sbju+heR+zs0Sqaac78oaQN5qAv1YXUMnfjt40J9IbNj31iBS5wZP+QDyZFCDFQMXX8VrmQBlSi9pcjQEztOVAwYHMSY5zorNcHActPEs1PV6qFoW/Da34I/nyNHuYFj/mONp0of4l3v5JoHmIwTh+Cp4//6j179wnCPlZO6FtXXNvXhwU4183qkqgTKg5Vrrkv0wUdkEHZ671fXuH0IAiJuYp/WfpA+t9IiJT6zhN1FFk2nuCgpfHhf04bKOI1iMJmfHC8bUj872nWL0fqSxvQCTBZ5PxBOkjUV+45fLfApr7+24AAIE18rd8s2q/GaVt/FS7Bt96Y4eQqRodZngYehPPsl1xde+ezlVDGj1RdvQco8ahW3t6q5LCivTq7Uc3N/3jfAWCUfZqA5M6wcV4nMhWLkdDIOBuA7UCkDVIiTDuA3iIS0XUqdDGV3aZWiwMe/g6oX9xP+SZQM0t0we6qQ3mmGA1f6xQBXAVCSEtmtHCT3JTZJpEShkoBwmN8osEQUhnHYtS79B+/JtPhxlVGrijW1Gx35AJX4OHlkeN6QPSZN84NcgIzo1orc=
 cache:
   yarn: true
   directories:
@@ -24,7 +27,7 @@ deploy:
     branch: master
 - provider: script
   skip-cleanup: true
-  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish --postpublish mattermost
   on:
     tags: true
 before_install:
