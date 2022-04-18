@@ -156,7 +156,7 @@ function parseDocuments($) {
       },
       amount: {
         sel: 'td[class="table__body__price"]',
-        parse: val => parseFloat(val.slice(0, -1).replace(',', '.'))
+        parse: val => parseFloat(val.slice(0, -1).replaceAll(' ' ,'').replace(',', '.'))
       },
       type: {
         sel: 'td:nth-child(3)'
